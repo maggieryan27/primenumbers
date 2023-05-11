@@ -1,0 +1,52 @@
+# ##########
+# UDF: prime(_s)
+# this function receives a number, s
+# s is tested for prime by looking at the remainder of s modulo 2 to the square root of s
+# if the number is prime, the function returns a value of TRUE
+# if the number is NOT prime, the function returns a value of FALSE
+# ##########
+def prime (_s):
+    is_prime = True
+    # divide n by every number ranging from 2 to n**0.5
+    for x in range (2,int(_s**0.5+1)):
+        if _s % x == 0:
+            is_prime = False
+    return is_prime
+
+# ##########
+#
+# MAIN PROGRAM 
+# 
+# ##########
+n = int(input("Enter the number of primes > "))
+s = int(input("Starting at > "))
+
+f=open("prime.txt","w")
+
+
+c = 0
+while c < n:
+    if prime(s):
+        print (s)
+        #write the prime number to the file 
+        f.write(str(s))
+        f.write("\n")
+        c = c + 1        # increment counter
+    s = s + 1            # increment to next number for prime consideration
+f.close()
+# below this comment, write the code for
+#   opening the file
+#   reading the contents
+#   appending the sum to the file
+
+
+f=open("prime.txt", "r")
+for p in range (0,n,2):
+    f1 = f.readlines()
+f.close()
+
+
+f=open("prime.txt","a")
+second_sum = sum(f1)
+f.write(str(second_sum)+"\n")
+f.close()
